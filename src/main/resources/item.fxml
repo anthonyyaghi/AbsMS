@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ItemController">
+  <children>
+    <SplitPane dividerPositions="0.33, 0.66" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <items>
+            <VBox prefHeight="598.0" prefWidth="311.0">
+               <children>
+                  <Label text="Name:">
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="nameField">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label text="Quantity:">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="quantityField">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label text="Cost:">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="costField">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label text="Price:">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="priceField">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label text="Type:">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ComboBox fx:id="typeBox" maxWidth="1.7976931348623157E308" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </ComboBox>
+                  <Label text="Package:">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ComboBox fx:id="packageBox" maxWidth="1.7976931348623157E308" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </ComboBox>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addItemClicked" text="Add Item">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <TitledPane animated="false" text="Item types">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <HBox prefHeight="96.0" prefWidth="293.0">
+                                 <children>
+                                    <TextField>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="20.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" onAction="#addTypeClicked" prefHeight="25.0" prefWidth="100.0" text="Add">
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TitledPane>
+                  <TitledPane animated="false" text="Item packages">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <HBox prefHeight="92.0" prefWidth="293.0">
+                                 <children>
+                                    <TextField>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="20.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" onAction="#addPackageClicked" prefHeight="25.0" prefWidth="100.0" text="Add">
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TitledPane>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+            <VBox fx:id="midBox" prefHeight="598.0" prefWidth="104.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Name: ">
+                           <HBox.margin>
+                              <Insets left="10.0" top="33.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="searchField" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="227.0">
+                           <HBox.margin>
+                              <Insets left="5.0" top="30.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <Button fx:id="searchBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchBtnClicked" text="Search">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="refreshBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#refreshTable" text="Refresh">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <TableView fx:id="table" prefHeight="500.0" prefWidth="291.0">
+<!--                    <columns>-->
+<!--                      <TableColumn fx:id="nameCln" prefWidth="212.0" text="Name" />-->
+<!--                      <TableColumn fx:id="phoneCln" prefWidth="198.0" text="Phone" />-->
+<!--                        <TableColumn fx:id="locationCln" prefWidth="188.0" text="Location" />-->
+<!--                    </columns>-->
+                  </TableView>
+               </children>
+            </VBox>
+            <VBox prefHeight="598.0" prefWidth="400.0">
+               <children>
+                  <HBox prefHeight="65.0" prefWidth="302.0">
+                     <children>
+                        <Label text="Quantity:">
+                           <HBox.margin>
+                              <Insets left="10.0" top="23.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="quantityLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="40.0">
+                           <HBox.margin>
+                              <Insets left="5.0" top="23.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="quantityModField" prefHeight="25.0" prefWidth="114.0">
+                           <HBox.margin>
+                              <Insets left="10.0" top="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#incClicked" prefHeight="25.0" prefWidth="25.0" text="+">
+                           <HBox.margin>
+                              <Insets left="10.0" top="20.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#subClicked" prefHeight="25.0" prefWidth="26.0" text="-">
+                           <HBox.margin>
+                              <Insets left="10.0" top="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox prefHeight="65.0" prefWidth="302.0">
+                     <children>
+                        <Label text="Cost:">
+                           <HBox.margin>
+                              <Insets left="10.0" top="23.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="costLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="40.0">
+                           <HBox.margin>
+                              <Insets left="5.0" top="23.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="costModField" prefHeight="25.0" prefWidth="100.0">
+                           <HBox.margin>
+                              <Insets left="32.0" top="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#setCostClicked" prefHeight="25.0" prefWidth="60.0" text="Set">
+                           <HBox.margin>
+                              <Insets left="10.0" top="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox prefHeight="65.0" prefWidth="302.0">
+                     <children>
+                        <Label text="Price:">
+                           <HBox.margin>
+                              <Insets left="10.0" top="23.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="priceLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="40.0">
+                           <HBox.margin>
+                              <Insets left="5.0" top="23.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="priceModField" prefHeight="25.0" prefWidth="100.0">
+                           <HBox.margin>
+                              <Insets left="32.0" top="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#setPriceClicked" prefHeight="25.0" prefWidth="60.0" text="Set">
+                           <HBox.margin>
+                              <Insets left="10.0" top="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+      </items>
+    </SplitPane>
+  </children>
+</VBox>
