@@ -1,4 +1,4 @@
-package sample.controllers;
+package abs.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

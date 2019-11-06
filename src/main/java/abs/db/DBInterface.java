@@ -1,9 +1,9 @@
-package sample.db;
+package abs.db;
 
-import sample.dto.AbsItem;
-import sample.dto.Customer;
-import sample.dto.ItemPackage;
-import sample.dto.ItemType;
+import abs.dto.AbsItem;
+import abs.dto.Customer;
+import abs.dto.ItemPackage;
+import abs.dto.ItemType;
 
 import java.util.List;
 

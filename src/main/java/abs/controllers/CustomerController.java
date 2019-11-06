@@ -1,13 +1,13 @@
-package sample.controllers;
+package abs.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import sample.db.DBImpl;
-import sample.db.DBInterface;
-import sample.dto.Customer;
+import abs.db.DBImpl;
+import abs.db.DBInterface;
+import abs.dto.Customer;
 
 import java.util.List;
 

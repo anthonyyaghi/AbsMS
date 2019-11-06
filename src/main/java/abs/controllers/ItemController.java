@@ -1,15 +1,15 @@
-package sample.controllers;
+package abs.controllers;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import sample.db.DBImpl;
-import sample.db.DBInterface;
-import sample.dto.AbsItem;
-import sample.dto.ItemPackage;
-import sample.dto.ItemType;
+import abs.db.DBImpl;
+import abs.db.DBInterface;
+import abs.dto.AbsItem;
+import abs.dto.ItemPackage;
+import abs.dto.ItemType;
 
 import java.util.List;
 

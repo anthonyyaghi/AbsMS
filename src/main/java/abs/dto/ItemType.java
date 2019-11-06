@@ -1,10 +1,10 @@
-package sample.dto;
+package abs.dto;
 
-public class ItemPackage {
+public class ItemType {
     private int id;
     private String name;
 
-    public ItemPackage(int id, String name) {
+    public ItemType(int id, String name) {
         this.id = id;
         this.name = name;
     }

@@ -1,4 +1,4 @@
-package sample.dto;
+package abs.dto;
 
 public class Customer {
     private String name, phone, address;

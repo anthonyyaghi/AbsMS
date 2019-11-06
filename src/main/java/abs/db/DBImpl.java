@@ -1,6 +1,6 @@
-package sample.db;
+package abs.db;
 
-import sample.dto.*;
+import abs.dto.*;
 
 import java.sql.*;
 import java.util.ArrayList;
