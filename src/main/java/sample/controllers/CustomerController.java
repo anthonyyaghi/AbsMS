@@ -33,14 +33,17 @@ public class CustomerController {
         TableColumn<String, Customer> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameColumn.setMinWidth(200);
+        nameColumn.setResizable(false);
 
         TableColumn<String, Customer> phoneColumn = new TableColumn<>("Phone");
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         phoneColumn.setMinWidth(200);
+        phoneColumn.setResizable(false);
 
         TableColumn<String, Customer> addressColumn = new TableColumn<>("Address");
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         addressColumn.setMinWidth(200);
+        addressColumn.setResizable(false);
 
 
         table.getColumns().add(nameColumn);
@@ -57,7 +60,7 @@ public class CustomerController {
 
     @FXML
     public void registerBtnClicked() {
-        db.insertCustomer(new Customer(nameField.getText().trim(), phoneField.getText().trim(), addressField.getText().trim()));
+        db.addCustomer(new Customer(nameField.getText().trim(), phoneField.getText().trim(), addressField.getText().trim()));
         nameField.setText("");
         phoneField.setText("");
         addressField.setText("");
@@ -77,7 +80,7 @@ public class CustomerController {
     private void listAllCustomers() {
         table.getItems().clear();
 
-        List<Customer> customers = db.listAllCustomers();
+        List<Customer> customers = db.getCustomers();
         for (Customer customer : customers) {
             table.getItems().add(customer);
         }

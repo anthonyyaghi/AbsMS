@@ -8,18 +8,29 @@ import sample.dto.ItemType;
 import java.util.List;
 
 public interface DBInterface {
-    void insertCustomer(Customer customer);
-    List<Customer> listAllCustomers();
+    void addCustomer(Customer customer);
+
+    List<Customer> getCustomers();
+
     List<Customer> findCustomer(String name);
 
     void addType(ItemType type);
 
+    List<ItemType> getTypes();
+
     void addPackage(ItemPackage itemPackage);
 
+    List<ItemPackage> getPackages();
+
     void addItem(AbsItem item);
-    List<AbsItem> listAllItems();
+
+    List<AbsItem> getItems();
+
     List<AbsItem> findItem(String name);
-    void updateQuantity(int quantity);
-    void updateCost(double cost);
-    void updatePrice(double price);
+
+    void updateQuantity(int id, int quantity);
+
+    void updateCost(int id, double cost);
+
+    void updatePrice(int id, double price);
 }

@@ -16,7 +16,7 @@ public class MenuController {
 
     @FXML
     public void itemsBtnClicked() {
-        openNewWindow("item.fxml", "Customer Menu", 900, 600);
+        openNewWindow("item.fxml", "Item Menu", 900, 600);
     }
 
     @FXML

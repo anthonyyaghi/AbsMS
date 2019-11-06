@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ItemController">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ItemController">
   <children>
     <SplitPane dividerPositions="0.33, 0.66" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
@@ -75,6 +75,9 @@
                      <VBox.margin>
                         <Insets left="10.0" />
                      </VBox.margin>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
                   </Label>
                   <ComboBox fx:id="typeBox" maxWidth="1.7976931348623157E308" prefWidth="150.0">
                      <VBox.margin>
@@ -85,6 +88,9 @@
                      <VBox.margin>
                         <Insets left="10.0" />
                      </VBox.margin>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
                   </Label>
                   <ComboBox fx:id="packageBox" maxWidth="1.7976931348623157E308" prefWidth="150.0">
                      <VBox.margin>
@@ -96,13 +102,13 @@
                         <Insets left="10.0" right="10.0" top="20.0" />
                      </VBox.margin>
                   </Button>
-                  <TitledPane animated="false" text="Item types">
+                  <TitledPane animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="292.0" text="Item types">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="85.0" prefWidth="200.0">
                            <children>
                               <HBox prefHeight="96.0" prefWidth="293.0">
                                  <children>
-                                    <TextField>
+                                    <TextField fx:id="typeField">
                                        <HBox.margin>
                                           <Insets left="10.0" top="20.0" />
                                        </HBox.margin>
@@ -121,13 +127,13 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TitledPane>
-                  <TitledPane animated="false" text="Item packages">
+                  <TitledPane animated="false" collapsible="false" prefHeight="85.0" prefWidth="292.0" text="Item packages">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <HBox prefHeight="92.0" prefWidth="293.0">
                                  <children>
-                                    <TextField>
+                                    <TextField fx:id="packageField">
                                        <HBox.margin>
                                           <Insets left="10.0" top="20.0" />
                                        </HBox.margin>
@@ -160,19 +166,19 @@
                               <Insets left="10.0" top="33.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="searchField" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="227.0">
+                        <TextField fx:id="searchField" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="214.0">
                            <HBox.margin>
-                              <Insets left="5.0" top="30.0" />
+                              <Insets left="5.0" right="10.0" top="30.0" />
                            </HBox.margin>
                         </TextField>
                      </children>
                   </HBox>
-                  <Button fx:id="searchBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchBtnClicked" text="Search">
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchBtnClicked" text="Search">
                      <VBox.margin>
                         <Insets bottom="5.0" left="10.0" right="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="refreshBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#refreshTable" text="Refresh">
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#refreshBtnClicked" text="Refresh">
                      <VBox.margin>
                         <Insets bottom="5.0" left="10.0" right="10.0" />
                      </VBox.margin>
@@ -200,19 +206,19 @@
                               <Insets left="5.0" top="23.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="quantityModField" prefHeight="25.0" prefWidth="114.0">
+                        <TextField fx:id="quantityModField" prefHeight="25.0" prefWidth="100.0">
                            <HBox.margin>
-                              <Insets left="10.0" top="20.0" />
+                              <Insets left="5.0" top="20.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" onAction="#incClicked" prefHeight="25.0" prefWidth="25.0" text="+">
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#subClicked" prefHeight="25.0" prefWidth="29.0" text="-">
                            <HBox.margin>
                               <Insets left="10.0" top="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#subClicked" prefHeight="25.0" prefWidth="26.0" text="-">
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#incClicked" prefHeight="25.0" prefWidth="29.0" text="+">
                            <HBox.margin>
-                              <Insets left="10.0" top="20.0" />
+                              <Insets left="5.0" top="20.0" />
                            </HBox.margin>
                         </Button>
                      </children>
