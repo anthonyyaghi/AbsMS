@@ -1,9 +1,6 @@
 package abs.db;
 
-import abs.dto.AbsItem;
-import abs.dto.Customer;
-import abs.dto.ItemPackage;
-import abs.dto.ItemType;
+import abs.dto.*;
 
 import java.util.List;
 
@@ -33,4 +30,14 @@ public interface DBInterface {
     void updateCost(int id, double cost);
 
     void updatePrice(int id, double price);
+
+    int getNextEcuNumber(String likeId);
+
+    void addEcu(Ecu ecu);
+
+    List<Ecu> getEcus();
+
+    void addEcuType(EcuType type);
+
+    List<EcuType> getEcuTypes();
 }

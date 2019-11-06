@@ -14,12 +14,16 @@ public class DBImpl implements DBInterface {
     private DBTableToList<AbsItem> itemRetriever;
     private DBTableToList<ItemType> typeRetriever;
     private DBTableToList<ItemPackage> packageRetriever;
+    private DBTableToList<EcuType> ecuTypeRetriever;
+    private DBTableToList<Ecu> ecuRetriever;
 
     public DBImpl() {
         customerRetriever = new DBTableToList<>();
         itemRetriever = new DBTableToList<>();
         typeRetriever = new DBTableToList<>();
         packageRetriever = new DBTableToList<>();
+        ecuTypeRetriever = new DBTableToList<>();
+        ecuRetriever = new DBTableToList<>();
 
         try {
             connection = ConnectionProvider.getConnection();
@@ -191,6 +195,68 @@ public class DBImpl implements DBInterface {
         }
     }
 
+    @Override
+    public int getNextEcuNumber(String likeId) {
+        try {
+            String sql = "select count(idecu)+1 as nextNum from ecu where absID like '" + likeId +"%';";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return resultSet.getInt("nextNum");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @Override
+    public void addEcu(Ecu ecu) {
+        try {
+            String sql = "INSERT INTO ecu (ecu_type_idecu_type, description, absID) VALUES (?, ?, ?);";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, ecu.getType());
+            statement.setString(2, ecu.getDescription());
+            statement.setString(3, ecu.getAbsId());
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<Ecu> getEcus() {
+        try {
+            PreparedStatement statement = connection.prepareStatement("select * from ecu");
+            return ecuRetriever.getList(statement, new EcuBuilder());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public void addEcuType(EcuType type) {
+        try {
+            String sql = "INSERT INTO ecu_type (name) VALUES (?);";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, type.getName());
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<EcuType> getEcuTypes() {
+        try {
+            PreparedStatement statement = connection.prepareStatement("select * from ecu_type");
+            return ecuTypeRetriever.getList(statement, new EcuTypeBuilder());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
 
     //    ------------------------------------------------------------------------------------------------------------------
     private static class TypeBuilder implements Function<ResultSet, ItemType> {
@@ -234,6 +300,29 @@ public class DBImpl implements DBInterface {
                 return new AbsItem(resultSet.getInt("iditem"), resultSet.getString("name"),
                         resultSet.getInt("quantity"), resultSet.getDouble("cost"), resultSet.getDouble("selling_price"),
                         resultSet.getInt("package_idpackage"), resultSet.getInt("type_idtype"));
+            } catch (SQLException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+    }
+
+    private static class EcuTypeBuilder implements Function<ResultSet, EcuType> {
+        @Override
+        public EcuType apply(ResultSet resultSet) {
+            try {
+                return new EcuType(resultSet.getInt("idecu_type"), resultSet.getString("name"));
+            } catch (SQLException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+    }
+
+    private static class EcuBuilder implements Function<ResultSet, Ecu> {
+        @Override
+        public Ecu apply(ResultSet resultSet) {
+            try {
+                return new Ecu(resultSet.getInt("idecu"), resultSet.getInt("ecu_type_idecu_type"),
+                        resultSet.getString("description"), resultSet.getString("absID"));
             } catch (SQLException e) {
                 throw new RuntimeException(e.getMessage());
             }

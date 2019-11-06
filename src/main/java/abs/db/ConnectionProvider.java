@@ -5,13 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionProvider {
-    private static String host = "";
-    private static String username = "";
-    private static String db = "";
-    private static String pass = "";
-
+    private static Connection connection= null;
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost/abs?user=admin&password=pass");
+        return connection;
+    }
+
+    public static void setConnection(Connection connection) {
+        ConnectionProvider.connection = connection;
     }
 }

@@ -11,7 +11,7 @@ import java.io.IOException;
 public class MenuController {
     @FXML
     public void ecuBtnClicked() {
-
+        openNewWindow("ecu.fxml", "ECU Menu", 900, 600);
     }
 
     @FXML
