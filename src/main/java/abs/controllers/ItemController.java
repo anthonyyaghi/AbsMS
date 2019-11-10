@@ -82,17 +82,23 @@ public class ItemController {
         costModField.textProperty().addListener(new DigitFieldListener(costModField));
         priceModField.textProperty().addListener(new DigitFieldListener(priceModField));
 
+        TableColumn<Integer, AbsItem> idCol = new TableColumn<>("ID");
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idCol.setMinWidth(100);
+        idCol.setResizable(false);
+
         TableColumn<String, AbsItem> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        nameColumn.setMinWidth(150);
+        nameColumn.setMinWidth(100);
         nameColumn.setResizable(false);
 
         TableColumn<String, AbsItem> quantityColumn = new TableColumn<>("Quantity");
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        quantityColumn.setMinWidth(150);
+        quantityColumn.setMinWidth(100);
         quantityColumn.setResizable(false);
 
 
+        table.getColumns().add(idCol);
         table.getColumns().add(nameColumn);
         table.getColumns().add(quantityColumn);
         table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {

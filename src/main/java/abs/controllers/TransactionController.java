@@ -48,6 +48,9 @@ public class TransactionController {
     private TextField bMediumField;
 
     @FXML
+    private TextField itemIdField;
+
+    @FXML
     private DatePicker bDate;
 
     @FXML
@@ -93,6 +96,7 @@ public class TransactionController {
     public void initialize() {
         eTransactionIdField.textProperty().addListener(new DigitFieldListener(eTransactionIdField));
         ePaymentField.textProperty().addListener(new DigitFieldListener(ePaymentField));
+        itemIdField.textProperty().addListener(new DigitFieldListener(itemIdField));
 
         TableColumn<Integer, Transaction> idCol = new TableColumn<>("ID");
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -271,6 +275,37 @@ public class TransactionController {
         setEditFields();
     }
 
+    @FXML
+    void addItemByID() {
+        if (itemIdField.getText().trim().isEmpty()) {
+            displayWarning("Enter an id first.");
+            return;
+        }
+
+        AbsItem item = db.getItemById(Integer.parseInt(itemIdField.getText().trim()));
+        if (item == null) {
+            displayWarning("Item not found");
+            return;
+        }
+
+        List<AbsItem> usedItems = itemsTable.getItems();
+        for (AbsItem usedItem : usedItems) {
+            if (usedItem.getId() == item.getId()) {
+                displayWarning("Item already in transaction");
+                return;
+            }
+        }
+
+        if (item.getQuantity() < 1) {
+            displayWarning("Item out of stock");
+            return;
+        }
+
+        db.addItemToTransaction(item.getId(), activeTransaction.getId());
+        availableItems = db.getAvailableItems(activeTransaction.getId());
+        setEditFields();
+    }
+
 //    ------------------------------------------------------------------------------------------------------------------
 
     private void listCustomers(ComboBox<Customer> box) {
@@ -294,12 +329,6 @@ public class TransactionController {
         }
         itemsTable.getItems().clear();
         itemsTable.getItems().addAll(db.getUsedItems(activeTransaction.getId()));
-    }
-
-    private Date getPickedDate(DatePicker datePicker) {
-        LocalDate localDate = datePicker.getValue();
-        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-        return Date.from(instant);
     }
 
     private void clearTransactionFields() {
