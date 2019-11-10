@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="abs.controllers.EcuController">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="abs.controllers.EcuController">
   <children>
     <SplitPane dividerPositions="0.33" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
@@ -64,8 +64,8 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextField fx:id="typeField" layoutX="14.0" layoutY="70.0" />
-                              <Button layoutX="170.0" layoutY="70.0" mnemonicParsing="false" onAction="#addTypeClicked" text="Add ECU Type" />
+                              <TextField fx:id="typeField" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="242.0" />
+                              <Button layoutX="79.0" layoutY="48.0" mnemonicParsing="false" onAction="#addTypeClicked" prefHeight="26.0" prefWidth="112.0" text="Add ECU Type" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -104,7 +104,7 @@
                         </Button>
                      </children>
                   </HBox>
-                   <TableView fx:id="table" prefHeight="500.0" prefWidth="291.0"/>
+                   <TableView fx:id="table" prefHeight="500.0" prefWidth="291.0" />
                </children>
             </VBox>
       </items>

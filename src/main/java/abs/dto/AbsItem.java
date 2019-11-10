@@ -72,4 +72,9 @@ public class AbsItem {
     public void setTypeId(int typeId) {
         this.typeId = typeId;
     }
+
+    @Override
+    public String toString() {
+        return name + "(id: " + id + ")";
+    }
 }

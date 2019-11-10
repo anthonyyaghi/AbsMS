@@ -26,7 +26,7 @@ public class MenuController {
 
     @FXML
     public void transBtnClicked(){
-
+        openNewWindow("transaction.fxml", "Transactions Menu", 900, 600);
     }
 
     private void openNewWindow(String path, String title, double width, double height) {

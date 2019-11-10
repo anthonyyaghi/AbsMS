@@ -44,4 +44,9 @@ public class Ecu {
     public void setAbsId(String absId) {
         this.absId = absId;
     }
+
+    @Override
+    public String toString() {
+        return absId;
+    }
 }

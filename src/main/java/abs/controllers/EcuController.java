@@ -53,7 +53,7 @@ public class EcuController {
 
         TableColumn<String, Ecu> descColumn = new TableColumn<>("Description");
         descColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        descColumn.setMinWidth(200);
+        descColumn.setMinWidth(500);
         descColumn.setResizable(false);
 
         table.getColumns().add(idColum);
@@ -96,7 +96,8 @@ public class EcuController {
 
     @FXML
     void searchClicked(ActionEvent event) {
-
+        table.getItems().clear();
+        table.getItems().addAll(db.findEcus(searchField.getText().trim()));
     }
 
     @FXML

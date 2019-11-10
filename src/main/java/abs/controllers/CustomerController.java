@@ -60,7 +60,7 @@ public class CustomerController {
 
     @FXML
     public void registerBtnClicked() {
-        db.addCustomer(new Customer(nameField.getText().trim(), phoneField.getText().trim(), addressField.getText().trim()));
+        db.addCustomer(new Customer(nameField.getText().trim(), phoneField.getText().trim(), addressField.getText().trim(), -1));
         nameField.setText("");
         phoneField.setText("");
         addressField.setText("");

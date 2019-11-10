@@ -21,7 +21,7 @@
             <Insets bottom="10.0" right="10.0" top="10.0" />
          </HBox.margin>
       </Button>
-      <Button fx:id="transactionBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#transBtnClicked" prefHeight="180.0" prefWidth="133.0" text="Transaction">
+      <Button fx:id="transactionBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#transBtnClicked" prefHeight="180.0" prefWidth="133.0" text="Transactions">
          <HBox.margin>
             <Insets bottom="10.0" right="10.0" top="10.0" />
          </HBox.margin>

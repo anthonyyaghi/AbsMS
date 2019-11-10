@@ -1,15 +1,14 @@
 package abs.controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import abs.controllers.utils.DigitFieldListener;
 import abs.db.DBImpl;
 import abs.db.DBInterface;
 import abs.dto.AbsItem;
 import abs.dto.ItemPackage;
 import abs.dto.ItemType;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
 
@@ -296,23 +295,5 @@ public class ItemController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-
-//    ------------------------------------------------------------------------------------------------------------------
-
-    private class DigitFieldListener implements ChangeListener<String> {
-        TextField field;
-
-        public DigitFieldListener(TextField field) {
-            this.field = field;
-        }
-
-        @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-            if (!field.getText().matches("^\\d*\\.\\d+|\\d+\\.\\d*|\\d*")) {
-                field.setText(oldValue);
-            }
-        }
     }
 }
