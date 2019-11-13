@@ -84,7 +84,7 @@ public class ItemController {
 
         TableColumn<Integer, AbsItem> idCol = new TableColumn<>("ID");
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        idCol.setMinWidth(100);
+        idCol.setMinWidth(50);
         idCol.setResizable(false);
 
         TableColumn<String, AbsItem> nameColumn = new TableColumn<>("Name");
@@ -92,15 +92,21 @@ public class ItemController {
         nameColumn.setMinWidth(100);
         nameColumn.setResizable(false);
 
+        TableColumn<String, AbsItem> packageCol = new TableColumn<>("Package");
+        packageCol.setCellValueFactory(new PropertyValueFactory<>("packageName"));
+        packageCol.setMinWidth(100);
+        packageCol.setResizable(false);
+
         TableColumn<String, AbsItem> quantityColumn = new TableColumn<>("Quantity");
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        quantityColumn.setMinWidth(100);
+        quantityColumn.setMinWidth(50);
         quantityColumn.setResizable(false);
 
 
         table.getColumns().add(idCol);
         table.getColumns().add(nameColumn);
         table.getColumns().add(quantityColumn);
+        table.getColumns().add(packageCol);
         table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             selectedItem = (AbsItem) newValue;
             if (selectedItem == null) {
@@ -119,7 +125,8 @@ public class ItemController {
     @FXML
     public void addItemClicked() {
         if (validItem()) {
-            db.addItem(new AbsItem(-1, nameField.getText().trim(), Integer.parseInt(quantityField.getText()),
+            db.addItem(new AbsItem(-1, nameField.getText().trim(), packageBox.getSelectionModel().getSelectedItem().getName(),
+                    typeBox.getSelectionModel().getSelectedItem().getName(), Integer.parseInt(quantityField.getText()),
                     Double.parseDouble(costField.getText()), Double.parseDouble(priceField.getText()),
                     packageBox.getSelectionModel().getSelectedItem().getId(), typeBox.getSelectionModel().getSelectedItem().getId()));
             listItems();

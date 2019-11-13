@@ -137,13 +137,17 @@
                   <Separator layoutX="451.0" layoutY="65.0" orientation="VERTICAL" prefHeight="488.0" prefWidth="8.0" />
                   <TableView fx:id="itemsTable" layoutX="467.0" layoutY="90.0" prefHeight="307.0" prefWidth="418.0" />
                   <Label layoutX="467.0" layoutY="65.0" text="Used Items:" />
-                  <Button layoutX="725.0" layoutY="409.0" mnemonicParsing="false" onAction="#incItems" prefWidth="72.0" text="inc" />
-                  <Button layoutX="557.0" layoutY="409.0" mnemonicParsing="false" onAction="#decItems" prefWidth="72.0" text="dec" />
+                  <Button layoutX="545.0" layoutY="417.0" mnemonicParsing="false" onAction="#incItems" prefWidth="72.0" text="inc" />
+                  <Button layoutX="467.0" layoutY="417.0" mnemonicParsing="false" onAction="#decItems" prefWidth="72.0" text="dec" />
                   <ComboBox fx:id="itemsBox" layoutX="467.0" layoutY="497.0" prefHeight="26.0" prefWidth="130.0" />
                   <Label layoutX="467.0" layoutY="472.0" text="Available Items:" />
                   <Button layoutX="605.0" layoutY="497.0" mnemonicParsing="false" onAction="#addItem" text="Add item" />
                   <TextField fx:id="itemIdField" layoutX="689.0" layoutY="497.0" prefHeight="26.0" prefWidth="100.0" />
                   <Button layoutX="797.0" layoutY="497.0" mnemonicParsing="false" onAction="#addItemByID" text="Add by ID" />
+                  <Label layoutX="638.0" layoutY="414.0" text="Total cost:" />
+                  <Label fx:id="totalCostLabel" layoutX="729.0" layoutY="414.0" prefHeight="16.0" prefWidth="60.0" />
+                  <Label layoutX="638.0" layoutY="435.0" text="Total price:" />
+                  <Label fx:id="totalPriceLabel" layoutX="729.0" layoutY="435.0" prefHeight="16.0" prefWidth="60.0" />
                </children></AnchorPane>
       </content>
     </Tab>

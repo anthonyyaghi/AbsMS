@@ -144,7 +144,9 @@ public class DBImpl implements DBInterface {
     @Override
     public List<AbsItem> getItems() {
         try {
-            PreparedStatement statement = connection.prepareStatement("select * from item");
+            String query = "select item.*, package.name as packageName, type.name typeName from item, package, type " +
+                    "where package_idpackage = idpackage and type_idtype=idtype";
+            PreparedStatement statement = connection.prepareStatement(query);
             return itemRetriever.getList(statement, new ItemBuilder());
         } catch (SQLException e) {
             e.printStackTrace();
@@ -155,7 +157,9 @@ public class DBImpl implements DBInterface {
     @Override
     public List<AbsItem> findItem(String name) {
         try {
-            PreparedStatement statement = connection.prepareStatement("select * from item where name like ?");
+            String query = "select item.*, package.name as packageName, type.name typeName from item, package, type " +
+                    "where package_idpackage = idpackage and type_idtype=idtype and name like ?";
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, "%" + name + "%");
             return itemRetriever.getList(statement, new ItemBuilder());
         } catch (SQLException e) {
@@ -167,7 +171,9 @@ public class DBImpl implements DBInterface {
     @Override
     public AbsItem getItemById(int id) {
         try {
-            PreparedStatement statement = connection.prepareStatement("select * from item where iditem = ?");
+            String query = "select item.*, package.name as packageName, type.name typeName from item, package, type " +
+                    "where package_idpackage = idpackage and type_idtype=idtype and iditem = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
             List<AbsItem> items = itemRetriever.getList(statement, new ItemBuilder());
             if (items.size() != 1) {
@@ -386,9 +392,10 @@ public class DBImpl implements DBInterface {
     @Override
     public List<AbsItem> getAvailableItems(int transactionId) {
         try {
-            PreparedStatement statement = connection.prepareStatement("select * from item where " +
-                    " quantity > 0 and " +
-                    "iditem not in (select item_iditem from transaction_has_item where transaction_idtransaction = ?)");
+            String query = "select item.*, package.name as packageName, type.name typeName from item, package, type " +
+                    "where package_idpackage = idpackage and type_idtype=idtype and quantity > 0 and " +
+                    "iditem not in (select item_iditem from transaction_has_item where transaction_idtransaction = ?)";
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, transactionId);
             return itemRetriever.getList(statement, new ItemBuilder());
         } catch (SQLException e) {
@@ -400,9 +407,9 @@ public class DBImpl implements DBInterface {
     @Override
     public List<AbsItem> getUsedItems(int transactionId) {
         try {
-            PreparedStatement statement = connection.prepareStatement("select item.*, thi.quantity as used_quantity " +
-                    "from item, transaction_has_item thi " +
-                    "where iditem = item_iditem and transaction_idtransaction = ?");
+            PreparedStatement statement = connection.prepareStatement("select item.*, thi.quantity as used_quantity, package.name as packageName, type.name typeName " +
+                    "from item, package, type, transaction_has_item thi " +
+                    "where package_idpackage = idpackage and type_idtype=idtype and iditem = item_iditem and transaction_idtransaction = ?");
             statement.setInt(1, transactionId);
             return itemRetriever.getList(statement, new UsedItemBuilder());
         } catch (SQLException e) {
@@ -499,6 +506,7 @@ public class DBImpl implements DBInterface {
         public AbsItem apply(ResultSet resultSet) {
             try {
                 return new AbsItem(resultSet.getInt("iditem"), resultSet.getString("name"),
+                        resultSet.getString("packageName"), resultSet.getString("typeName"),
                         resultSet.getInt("quantity"), resultSet.getDouble("cost"), resultSet.getDouble("selling_price"),
                         resultSet.getInt("package_idpackage"), resultSet.getInt("type_idtype"));
             } catch (SQLException e) {
@@ -512,6 +520,7 @@ public class DBImpl implements DBInterface {
         public AbsItem apply(ResultSet resultSet) {
             try {
                 return new AbsItem(resultSet.getInt("iditem"), resultSet.getString("name"),
+                        resultSet.getString("packageName"), resultSet.getString("typeName"),
                         resultSet.getInt("used_quantity"), resultSet.getDouble("cost"), resultSet.getDouble("selling_price"),
                         resultSet.getInt("package_idpackage"), resultSet.getInt("type_idtype"));
             } catch (SQLException e) {

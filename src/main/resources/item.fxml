@@ -15,7 +15,7 @@
 
 <VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="abs.controllers.ItemController">
   <children>
-    <SplitPane dividerPositions="0.33, 0.66" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <SplitPane dividerPositions="0.25, 0.66" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
             <VBox prefHeight="598.0" prefWidth="311.0">
                <children>
@@ -108,12 +108,12 @@
                            <children>
                               <HBox prefHeight="96.0" prefWidth="293.0">
                                  <children>
-                                    <TextField fx:id="typeField">
+                                    <TextField fx:id="typeField" prefHeight="26.0" prefWidth="123.0">
                                        <HBox.margin>
                                           <Insets left="10.0" top="20.0" />
                                        </HBox.margin>
                                     </TextField>
-                                    <Button mnemonicParsing="false" onAction="#addTypeClicked" prefHeight="26.0" prefWidth="90.0" text="Add">
+                                    <Button mnemonicParsing="false" onAction="#addTypeClicked" prefHeight="26.0" prefWidth="66.0" text="Add">
                                        <HBox.margin>
                                           <Insets left="10.0" top="20.0" />
                                        </HBox.margin>
@@ -133,12 +133,12 @@
                            <children>
                               <HBox prefHeight="92.0" prefWidth="293.0">
                                  <children>
-                                    <TextField fx:id="packageField">
+                                    <TextField fx:id="packageField" prefHeight="26.0" prefWidth="123.0">
                                        <HBox.margin>
                                           <Insets left="10.0" top="20.0" />
                                        </HBox.margin>
                                     </TextField>
-                                    <Button mnemonicParsing="false" onAction="#addPackageClicked" prefHeight="25.0" prefWidth="90.0" text="Add">
+                                    <Button mnemonicParsing="false" onAction="#addPackageClicked" prefHeight="26.0" prefWidth="66.0" text="Add">
                                        <HBox.margin>
                                           <Insets left="10.0" top="20.0" />
                                        </HBox.margin>

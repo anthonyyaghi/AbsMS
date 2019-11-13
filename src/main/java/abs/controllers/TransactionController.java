@@ -90,6 +90,12 @@ public class TransactionController {
     private TextField eTechField;
 
     @FXML
+    private Label totalCostLabel;
+
+    @FXML
+    private Label totalPriceLabel;
+
+    @FXML
     private TextArea eDescriptionArea;
 
     @FXML
@@ -328,7 +334,10 @@ public class TransactionController {
             return;
         }
         itemsTable.getItems().clear();
-        itemsTable.getItems().addAll(db.getUsedItems(activeTransaction.getId()));
+        List<AbsItem> usedItems = db.getUsedItems(activeTransaction.getId());
+        itemsTable.getItems().addAll(usedItems);
+        totalCostLabel.setText(String.valueOf(usedItems.stream().mapToDouble(i -> i.getCost()*i.getQuantity()).sum()));
+        totalPriceLabel.setText(String.valueOf(usedItems.stream().mapToDouble(i -> i.getPrice()*i.getQuantity()).sum()));
     }
 
     private void clearTransactionFields() {
@@ -351,6 +360,8 @@ public class TransactionController {
         eDescriptionArea.clear();
         itemsTable.getItems().clear();
         itemsBox.getItems().clear();
+        totalCostLabel.setText("");
+        totalPriceLabel.setText("");
     }
 
     private void setEditFields() {
