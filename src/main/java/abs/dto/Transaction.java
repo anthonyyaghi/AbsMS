@@ -8,8 +8,10 @@ public class Transaction {
     private Date inDate, outDate;
     private double payment;
     private String description, medium, technician, customer, ecu;
+    private boolean payed;
 
-    public Transaction(int id, int ecu_id, int customer_id, Date inDate, Date outDate, double payment, String description, String medium, String technician, String customer, String ecu) {
+    public Transaction(int id, int ecu_id, int customer_id, Date inDate, Date outDate, double payment, String description,
+                       String medium, String technician, String customer, String ecu, boolean payed) {
         this.id = id;
         this.ecu_id = ecu_id;
         this.customer_id = customer_id;
@@ -21,6 +23,7 @@ public class Transaction {
         this.technician = technician;
         this.customer = customer;
         this.ecu = ecu;
+        this.payed = payed;
     }
 
     public int getId() {
@@ -109,5 +112,13 @@ public class Transaction {
 
     public void setEcu(String ecu) {
         this.ecu = ecu;
+    }
+
+    public boolean isPayed() {
+        return payed;
+    }
+
+    public void setPayed(boolean payed) {
+        this.payed = payed;
     }
 }

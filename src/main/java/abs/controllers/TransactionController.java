@@ -33,6 +33,9 @@ public class TransactionController {
     }
 
     @FXML
+    private CheckBox payedCheckBox;
+
+    @FXML
     private TextField searchField;
 
     @FXML
@@ -106,30 +109,35 @@ public class TransactionController {
 
         TableColumn<Integer, Transaction> idCol = new TableColumn<>("ID");
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        idCol.setMinWidth(105);
+        idCol.setMinWidth(50);
         idCol.setResizable(false);
 
         TableColumn<String, Transaction> customerCol = new TableColumn<>("Customer");
         customerCol.setCellValueFactory(new PropertyValueFactory<>("customer"));
-        customerCol.setMinWidth(109);
+        customerCol.setMinWidth(90);
         customerCol.setResizable(false);
 
         TableColumn<String, Transaction> ecuCol = new TableColumn<>("ECU");
         ecuCol.setCellValueFactory(new PropertyValueFactory<>("ecu"));
-        ecuCol.setMinWidth(105);
+        ecuCol.setMinWidth(90);
         ecuCol.setResizable(false);
 
         TableColumn<Double, Transaction> paymentCol = new TableColumn<>("Payment");
         paymentCol.setCellValueFactory(new PropertyValueFactory<>("payment"));
-        paymentCol.setMinWidth(105);
+        paymentCol.setMinWidth(90);
         paymentCol.setResizable(false);
 
         TableColumn<String, Transaction> techCol = new TableColumn<>("M3alem");
         techCol.setCellValueFactory(new PropertyValueFactory<>("technician"));
-        techCol.setMinWidth(105);
+        techCol.setMinWidth(90);
         techCol.setResizable(false);
 
-        table.getColumns().addAll(idCol, customerCol, ecuCol, paymentCol, techCol);
+        TableColumn<Boolean, Transaction> payedCol = new TableColumn<>("Payed");
+        payedCol.setCellValueFactory(new PropertyValueFactory<>("payed"));
+        payedCol.setMinWidth(90);
+        payedCol.setResizable(false);
+
+        table.getColumns().addAll(idCol, customerCol, ecuCol, paymentCol, techCol, payedCol);
 
 
         TableColumn<String, AbsItem> nameCol = new TableColumn<>("Name");
@@ -167,7 +175,7 @@ public class TransactionController {
         String technician = bTechField.getText().trim();
 
         db.addTransaction(new Transaction(-1, ecu.getEcuId(), customer.getId(), inDate, null, 0,
-                description, medium, technician, customer.getName(), ecu.getAbsId()));
+                description, medium, technician, customer.getName(), ecu.getAbsId(), false));
 
         clearTransactionFields();
         listTransactions();
@@ -226,7 +234,7 @@ public class TransactionController {
 
         activeTransaction = new Transaction(id, ecu.getEcuId(), customer.getId(), inDate, outDate, payment,
                 eDescriptionArea.getText().trim(), eMediumField.getText().trim(), eTechField.getText().trim(),
-                customer.getName(), ecu.getAbsId());
+                customer.getName(), ecu.getAbsId(), payedCheckBox.isSelected());
 
         db.updateTransaction(activeTransaction);
         setEditFields();
@@ -393,6 +401,8 @@ public class TransactionController {
 
             itemsBox.getItems().clear();
             itemsBox.getItems().addAll(availableItems);
+
+            payedCheckBox.setSelected(activeTransaction.isPayed());
 
             listUsedItems();
         }

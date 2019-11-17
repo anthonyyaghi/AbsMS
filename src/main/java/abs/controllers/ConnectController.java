@@ -66,7 +66,7 @@ public class ConnectController {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://" + hostField.getText().trim() +
                         "/" + dbField.getText().trim(), userField.getText().trim(), passField.getText().trim());
                 ConnectionProvider.setConnection(connection);
-                openNewWindow("menu.fxml", "Customer Menu", 600, 200);
+                openNewWindow("menu.fxml", "Customer Menu", 810, 200);
                 saveParams();
                 Stage stage = (Stage) hostField.getScene().getWindow();
                 stage.close();

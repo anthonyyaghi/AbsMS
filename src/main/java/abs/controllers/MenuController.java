@@ -11,22 +11,27 @@ import java.io.IOException;
 public class MenuController {
     @FXML
     public void ecuBtnClicked() {
-        openNewWindow("ecu.fxml", "ECU Menu", 900, 600);
+        openNewWindow("ecu.fxml", "ECU Screen", 900, 600);
     }
 
     @FXML
     public void itemsBtnClicked() {
-        openNewWindow("item.fxml", "Item Menu", 900, 600);
+        openNewWindow("item.fxml", "Item Screen", 900, 600);
     }
 
     @FXML
     public void customersBtnClicked(){
-        openNewWindow("customer.fxml", "Customer Menu", 900, 600);
+        openNewWindow("customer.fxml", "Customer Screen", 900, 600);
     }
 
     @FXML
     public void transBtnClicked(){
-        openNewWindow("transaction.fxml", "Transactions Menu", 900, 600);
+        openNewWindow("transaction.fxml", "Transactions Screen", 900, 600);
+    }
+
+    @FXML
+    public void balanceBtnClicked(){
+        openNewWindow("balance.fxml", "Balance Screen", 640, 400);
     }
 
     private void openNewWindow(String path, String title, double width, double height) {

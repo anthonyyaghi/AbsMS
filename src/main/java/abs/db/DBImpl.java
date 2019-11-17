@@ -301,7 +301,7 @@ public class DBImpl implements DBInterface {
     @Override
     public void addTransaction(Transaction transaction) {
         try {
-            String sql = "INSERT INTO transaction (ecu_idecu, indate, payment, description, outdate, customer_idcustomer, medium, technician) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO transaction (ecu_idecu, indate, payment, description, outdate, customer_idcustomer, medium, technician, payed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, transaction.getEcu_id());
             statement.setDate(2, transaction.getInDate());
@@ -311,6 +311,7 @@ public class DBImpl implements DBInterface {
             statement.setInt(6, transaction.getCustomer_id());
             statement.setString(7, transaction.getMedium());
             statement.setString(8, transaction.getTechnician());
+            statement.setBoolean(9, transaction.isPayed());
 
             statement.executeUpdate();
         } catch (Exception e) {
@@ -371,7 +372,8 @@ public class DBImpl implements DBInterface {
                     "outdate = ?," +
                     "customer_idcustomer = ?," +
                     "medium = ?," +
-                    "technician = ? " +
+                    "technician = ?," +
+                    "payed = ? " +
                     "where idtransaction = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, transaction.getEcu_id());
@@ -383,6 +385,7 @@ public class DBImpl implements DBInterface {
             statement.setString(7, transaction.getMedium());
             statement.setString(8, transaction.getTechnician());
             statement.setInt(9, transaction.getId());
+            statement.setBoolean(10, transaction.isPayed());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -561,7 +564,7 @@ public class DBImpl implements DBInterface {
                         resultSet.getDate("outdate"), resultSet.getDouble("payment"),
                         resultSet.getString("description"), resultSet.getString("medium"),
                         resultSet.getString("technician"), resultSet.getString("name"),
-                        resultSet.getString("absID"));
+                        resultSet.getString("absID"), resultSet.getBoolean("payed"));
             } catch (SQLException e) {
                 throw new RuntimeException(e.getMessage());
             }
