@@ -384,8 +384,8 @@ public class DBImpl implements DBInterface {
             statement.setInt(6, transaction.getCustomer_id());
             statement.setString(7, transaction.getMedium());
             statement.setString(8, transaction.getTechnician());
-            statement.setInt(9, transaction.getId());
-            statement.setBoolean(10, transaction.isPayed());
+            statement.setBoolean(9, transaction.isPayed());
+            statement.setInt(10, transaction.getId());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
