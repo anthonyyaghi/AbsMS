@@ -158,7 +158,7 @@ public class DBImpl implements DBInterface {
     public List<AbsItem> findItem(String name) {
         try {
             String query = "select item.*, package.name as packageName, type.name typeName from item, package, type " +
-                    "where package_idpackage = idpackage and type_idtype=idtype and name like ?";
+                    "where package_idpackage = idpackage and type_idtype=idtype and item.name like ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, "%" + name + "%");
             return itemRetriever.getList(statement, new ItemBuilder());
