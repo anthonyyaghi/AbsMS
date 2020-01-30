@@ -12,19 +12,26 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TransactionController {
     private DBInterface db;
 
     private Transaction activeTransaction;
     private List<AbsItem> availableItems;
+
+    private List<Customer> allCustomers;
+    private String filter;
 
     public TransactionController() {
         db = new DBImpl();
@@ -103,6 +110,9 @@ public class TransactionController {
 
     @FXML
     public void initialize() {
+        allCustomers = new ArrayList<>();
+        filter = "";
+
         eTransactionIdField.textProperty().addListener(new DigitFieldListener(eTransactionIdField));
         ePaymentField.textProperty().addListener(new DigitFieldListener(ePaymentField));
         itemIdField.textProperty().addListener(new DigitFieldListener(itemIdField));
@@ -320,11 +330,63 @@ public class TransactionController {
         setEditFields();
     }
 
+    @FXML
+    void filterBCustomer(KeyEvent event) {
+        if (event.getCode() == KeyCode.BACK_SPACE) {
+            filter = "";
+            bCustomerBox.getItems().clear();
+            bCustomerBox.getItems().addAll(allCustomers);
+        }
+        else {
+            filter += event.getText();
+            if (!filter.isEmpty()) {
+                List<Customer> filteredList = allCustomers.stream().filter(customer -> {
+                    String[] words = customer.getName().split(" ");
+                    for (String word : words) {
+                        if (word.toUpperCase().contains(filter.toUpperCase())){
+                            return true;
+                        }
+                    }
+                    return false;
+                }).collect(Collectors.toList());
+                bCustomerBox.getItems().clear();
+                bCustomerBox.getItems().addAll(filteredList);
+            }
+        }
+    }
+
+    @FXML
+    void filterECustomer(KeyEvent event) {
+        if (event.getCode() == KeyCode.BACK_SPACE) {
+            filter = "";
+            eCustomerBox.getItems().clear();
+            eCustomerBox.getItems().addAll(allCustomers);
+        }
+        else {
+            filter += event.getText();
+            if (!filter.isEmpty()) {
+                List<Customer> filteredList = allCustomers.stream().filter(customer -> {
+                    String[] words = customer.getName().split(" ");
+                    for (String word : words) {
+                        if (word.toUpperCase().contains(filter.toUpperCase())){
+                            return true;
+                        }
+                    }
+                    return false;
+                }).collect(Collectors.toList());
+                eCustomerBox.getItems().clear();
+                eCustomerBox.getItems().addAll(filteredList);
+            }
+        }
+    }
+
 //    ------------------------------------------------------------------------------------------------------------------
 
     private void listCustomers(ComboBox<Customer> box) {
         box.getItems().clear();
-        box.getItems().addAll(db.getCustomers());
+        allCustomers = db.getCustomers();
+        allCustomers.sort(Comparator.comparing(a -> a.getName().toLowerCase()));
+        box.getItems().addAll(allCustomers);
     }
 
     private void listECUs(ComboBox<Ecu> box) {

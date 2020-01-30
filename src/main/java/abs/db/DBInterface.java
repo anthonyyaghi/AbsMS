@@ -64,4 +64,6 @@ public interface DBInterface {
     void removeItemFromTransaction(int itemId, int transactionId);
 
     void updateItemUsage(int itemId, int transactionId, int quantity);
+
+    void updateEcu(Ecu ecu);
 }

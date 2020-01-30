@@ -468,6 +468,22 @@ public class DBImpl implements DBInterface {
         }
     }
 
+    @Override
+    public void updateEcu(Ecu ecu) {
+        try {
+            String sql = "update ecu set " +
+                    "description = ?, absID = ?" +
+                    "where idecu = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, ecu.getDescription());
+            statement.setString(2, ecu.getAbsId());
+            statement.setInt(3, ecu.getEcuId());
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     //    ------------------------------------------------------------------------------------------------------------------
     private static class TypeBuilder implements Function<ResultSet, ItemType> {
         @Override

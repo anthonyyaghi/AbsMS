@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="abs.controllers.TransactionController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="abs.controllers.TransactionController">
   <tabs>
     <Tab text="Browse">
       <content>
@@ -27,7 +27,7 @@
                   <Label layoutX="14.0" layoutY="100.0" text="Medium:" />
                   <Label layoutX="14.0" layoutY="140.0" text="Date:" />
                   <Label layoutX="11.0" layoutY="220.0" text="Description:" />
-                  <ComboBox fx:id="bCustomerBox" layoutX="118.0" layoutY="15.0" prefHeight="26.0" prefWidth="218.0" />
+                  <ComboBox fx:id="bCustomerBox" layoutX="118.0" layoutY="15.0" onKeyPressed="#filterBCustomer" prefHeight="26.0" prefWidth="218.0" />
                   <ComboBox fx:id="bEcuBox" layoutX="118.0" layoutY="55.0" prefHeight="26.0" prefWidth="218.0" />
                   <TextField fx:id="bMediumField" layoutX="118.0" layoutY="95.0" prefHeight="26.0" prefWidth="218.0" />
                   <DatePicker fx:id="bDate" layoutX="118.0" layoutY="135.0" prefWidth="218.0" />
@@ -97,7 +97,7 @@
                         <HBox prefHeight="35.0" prefWidth="200.0" spacing="20.0">
                            <children>
                               <Label text="Customer:" />
-                              <ComboBox fx:id="eCustomerBox" prefWidth="198.0" />
+                              <ComboBox fx:id="eCustomerBox" onKeyPressed="#filterECustomer" prefWidth="198.0" />
                            </children>
                         </HBox>
                         <HBox prefHeight="35.0" prefWidth="200.0" spacing="20.0">

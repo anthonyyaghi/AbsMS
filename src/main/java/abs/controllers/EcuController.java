@@ -4,6 +4,8 @@ import abs.db.DBImpl;
 import abs.db.DBInterface;
 import abs.dto.Ecu;
 import abs.dto.EcuType;
+import javafx.application.Platform;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -37,6 +39,20 @@ public class EcuController {
     @FXML
     private TableView table;
 
+    @FXML
+    private TextField loadIdField;
+
+    @FXML
+    private TextField newIdField;
+
+    @FXML
+    private TextArea newDescArea;
+
+    @FXML
+    private CheckBox enableCheckBox;
+
+    private Ecu loadedEcu;
+
     public EcuController() {
         db = new DBImpl();
     }
@@ -58,7 +74,8 @@ public class EcuController {
 
         table.getColumns().add(idColum);
         table.getColumns().add(descColumn);
-    }
+        newIdField.setEditable(false);
+}
 
     @FXML
     void addClicked(ActionEvent event) {
@@ -109,6 +126,33 @@ public class EcuController {
         db.addEcuType(new EcuType(-1, typeField.getText().trim()));
         typeField.clear();
         listEcuTypes();
+    }
+
+    @FXML
+    void loadClicked() {
+        if (loadIdField.getText().isEmpty()) {
+            displayWarning("Enter an ID first");
+            return;
+        }
+        loadedEcu =  db.findEcus(loadIdField.getText()).get(0);
+        newIdField.setText(loadedEcu.getAbsId());
+        newDescArea.setText(loadedEcu.getDescription());
+    }
+
+    @FXML
+    void enableClicked() {
+        newIdField.setEditable(enableCheckBox.isSelected());
+    }
+
+    @FXML
+    void updateClicked() {
+        if (loadedEcu == null) {
+            displayWarning("Load an ecu first");
+            return;
+        }
+        loadedEcu.setAbsId(newIdField.getText());
+        loadedEcu.setDescription(newDescArea.getText());
+        db.updateEcu(loadedEcu);
     }
 
     private void displayWarning(String message) {
