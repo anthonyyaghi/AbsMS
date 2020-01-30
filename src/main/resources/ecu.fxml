@@ -87,7 +87,7 @@
                                     <Insets />
                                  </opaqueInsets>
                               </VBox>
-                              <VBox fx:id="midBox" prefHeight="598.0" prefWidth="104.0">
+                              <VBox fx:id="midBox" prefHeight="583.0" prefWidth="599.0">
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
@@ -113,7 +113,7 @@
                                           </Button>
                                        </children>
                                     </HBox>
-                                     <TableView fx:id="table" prefHeight="500.0" prefWidth="291.0" />
+                                     <TableView fx:id="table" prefHeight="467.0" prefWidth="599.0" />
                                  </children>
                               </VBox>
                         </items>
